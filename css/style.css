@@ -1,0 +1,12 @@
+.center-align {
+    text-align: center;
+}
+.brand-logo {
+    font-size: 2rem; /* Example font size */
+    color: #333; /* Example color */
+    /* Add more styling as needed */
+}
+nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
