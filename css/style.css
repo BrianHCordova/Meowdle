@@ -94,3 +94,18 @@ h1.center-align {
     letter-spacing: 2px; /* Increase letter spacing for better readability */
 }
 
+/* Default light mode styles */
+body {
+    background-color: #fff; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+body.dark-mode h1 {
+    color: #fff; /* White text color for h1 in dark mode */
+}
