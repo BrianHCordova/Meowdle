@@ -68,20 +68,32 @@ nav {
   .input-container input[type="text"]:valid ~ .underline {
     transform: scaleX(1);
   }
-  
-  .content button {
-    display: block;
-    margin-top: var(--_gap);
-    padding: 0.6em 0.9em;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    background: #020043;
-    margin-left: auto;
-    color: var(--_color);
+
+  .button {
+    display: grid;
+    justify-content: center;
+    padding-bottom: 20px;
   }
-  
+
+  .attribute-container {
+    color: black;
+    font-size: large;
+    text-align: center;
+    border: solid black 2px;
+    align-items: end;
+    visibility: hidden;
+  }
+
+  .displayed-cards {
+    display: flex;
+    align-items: end;
+    margin-bottom: 0px !important;
+  }
+
+  .attribute-card{
+    border-bottom: 1px solid black;
+  }
+ 
   .blob {
     position: absolute;
     opacity: 0.5;
