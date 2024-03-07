@@ -1,6 +1,5 @@
-// let catBreeds = [];
-// let day = 68;
-// let sequence = [];
+const gameBody = document.querySelector('#game-body');
+
 const sequence1 = [
 	59, 51, 35, 53, 37, 44, 34, 36, 17, 11, 33, 26, 7, 49, 1, 12, 2, 10, 22, 32,
 	66, 16, 0, 61, 15, 5, 30, 19, 18, 43, 48, 29, 50, 60, 65, 63, 21, 45, 57, 3,
@@ -8,54 +7,32 @@ const sequence1 = [
 	14, 4, 20, 58, 42, 47, 64,
 ];
 
-// console.log(sequence1[0]);
+let catOfTheDay;
+
+// console.log(sequence1[66]);
 // const sequence2 = [3, 0, 27, 6, 61, 48, 43, 14, 47, 42, 11, 24, 46, 28, 26, 23, 15, 51, 2, 33, 30, 52, 17, 66, 53, 12, 16, 21, 25, 10, 13, 36, 54, 58, 8, 60, 64, 4, 44, 57, 1, 41, 49, 5, 50, 59, 18, 39, 32, 37, 65, 9, 7, 29, 38, 45, 56, 19, 20, 63, 55, 22, 62, 31, 35, 34, 40]
 //const sequence3 = [52, 53, 60, 15, 64, 11, 1, 14, 32, 43, 21, 61, 47, 50, 4, 40, 20, 54, 29, 66, 39, 36, 0, 16, 37, 3, 10, 13, 51, 24, 63, 62, 9, 18, 30, 56, 19, 5, 26, 31, 34, 57, 2, 6, 55, 27, 59, 35, 25, 33, 46, 12, 44, 28, 22, 42, 17, 8, 65, 23, 45, 49, 38, 7, 48, 58, 41]
 
-// function getSequence() {
-// 	for (let i = 0; i < 67; i++) {
-// 		sequence.push(i);
+// function shuffle(array) {
+// 	let currentIndex = array.length;
+// 	let randomIndex;
+
+// 	while (currentIndex > 0) {
+// 		randomIndex = Math.floor(Math.random() * currentIndex);
+// 		currentIndex--;
+
+// 		[array[currentIndex], array[randomIndex]] = [
+// 			array[randomIndex],
+// 			array[currentIndex],
+// 		];
 // 	}
+// 	return array;
 // }
 
-// HARD CODE A START DATE (this will act as a starting point)
-// THEN FROM THERE WE CAN UPDATE LOCAL STORAGE TO KEEP UP WITH THE RESETS
-
-function shuffle(array) {
-	let currentIndex = array.length;
-	let randomIndex;
-
-	while (currentIndex > 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
-
-		[array[currentIndex], array[randomIndex]] = [
-			array[randomIndex],
-			array[currentIndex],
-		];
-	}
-	// localStorage.removeItem('cats');
-	// updateBreedToLocal(array);
-	return array;
-}
-
-// function updateBreedToLocal(catBreeds) {
-// 	localStorage.setItem('cats', JSON.stringify(catBreeds));
-// }
-
-// function updateDayToLocal() {
-// 	localStorage.setItem('day', day);
-// }
-
-function fetchBreeds() {
+function fetchBreeds(index) {
 	// If the day exceeds 67 days, then we remove the previous breeds array from local storage then fetch a new randomized list, else we just grab the pre-existing cat breeds list from local storage
 
-	// localStorage.removeItem('cats');
-	// catBreeds = JSON.parse(localStorage.getItem('cats'));
-
-	// if (catBreeds === null) {
-	// 	catBreeds = [];
-	// }
+	const randomCat = sequence1[index];
 
 	// Fetches API
 	fetch(`https://api.thecatapi.com/v1/breeds`)
@@ -63,15 +40,22 @@ function fetchBreeds() {
 			return response.json();
 		})
 		.then(function (data) {
-			// console.log(data);
-			// for (let i = 0; i < data.length; i++) {
-			// 	catBreeds.push(data[i].name);
-			// }
-			// shuffle(catBreeds);
-			// console.log(catBreeds);
-		});
+			// console.log(data[randomCat]);
+			const catBreed = data[randomCat];
 
-	// catBreeds = JSON.parse(localStorage.getItem('cats'));
+			catOfTheDay = {
+				id: catBreed.id,
+				name: catBreed.name,
+				shortTail: catBreed.suppressed_tail,
+				shortLegs: catBreed.short_legs,
+				weight: catBreed.weight.imperial,
+				lifespan: catBreed.life_span,
+				hairless: catBreed.hairless,
+				altName: catBreed.alt_names,
+			};
+			// console.log(catOfTheDay);
+		});
+	// console.log(catOfTheDay);
 }
 
 function addDays(date, period) {
@@ -104,7 +88,7 @@ function dateDiffInDays(a, b) {
 }
 
 // When user reopens the page, see if the date has passed at all
-function checkDate() {
+async function checkDate() {
 	// Obtain date from local storage if possible
 	// If there is no date grab the hard coded date (the VERY beginning date)
 	// Update it from there
@@ -121,7 +105,8 @@ function checkDate() {
 
 		if (lastReset.toISOString() === todaysDate.toISOString()) {
 			const index = 0;
-			const newDate = todaysDate;
+			// const newDate = todaysDate;
+			fetchBreeds(index);
 		} else {
 			const daysDifference = dateDiffInDays(lastReset, todaysDate);
 
@@ -132,6 +117,8 @@ function checkDate() {
 			// Sets the new date when there is a reset
 			localStorage.setItem('date', JSON.stringify(newDate));
 			// localStorage.setItem('day', index);
+
+			fetchBreeds(index);
 		}
 	} // Else if there is nothing in local storage, make the beginning date the last reset, then update the days to calculate which rotation we are on and the index
 	else {
@@ -144,7 +131,20 @@ function checkDate() {
 		localStorage.setItem('date', JSON.stringify(newDate));
 		// console.log(`THIS IS WHEN LOCAL IS EMPTY (DATE): ${newDate}`);
 		// console.log(`THIS IS WHEN LOCAL IS EMPTY (INDEX): ${index}`);
+		fetchBreeds(index);
 	}
 }
-checkDate();
-// If it has, update the now current date and calculate the difference in days so that we can traverse the array to match the right answer
+
+// Loads the page after 2 seconds to give enough time to fetch API and store guess of the day
+function load() {
+	// gameBody.setAttribute('style', 'display: none');
+	setTimeout(showHTML, 2000);
+	checkDate();
+}
+
+function showHTML() {
+	gameBody.setAttribute('style', 'display: visible');
+	console.log(catOfTheDay);
+}
+
+load();
