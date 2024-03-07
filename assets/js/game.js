@@ -1,4 +1,7 @@
 const gameBody = document.querySelector('#game-body');
+const userInput = document.querySelector('#input');
+const submitBtn = document.querySelector('#input-submit-btn');
+let catOfTheDay;
 
 const sequence1 = [
 	59, 51, 35, 53, 37, 44, 34, 36, 17, 11, 33, 26, 7, 49, 1, 12, 2, 10, 22, 32,
@@ -7,7 +10,296 @@ const sequence1 = [
 	14, 4, 20, 58, 42, 47, 64,
 ];
 
-let catOfTheDay;
+catList = [
+	'abyssinian',
+	'aegean',
+	'american bobtail',
+	'american curl',
+	'american shorthair',
+	'american wirehair',
+	'arabian mau',
+	'australian mist',
+	'balinese',
+	'bambino',
+	'bengal',
+	'birman',
+	'bombay',
+	'british longhair',
+	'british shorthair',
+	'burmese',
+	'burmilla',
+	'california spangled',
+	'chantilly-tiffany',
+	'chartreux',
+	'chausie',
+	'cheetoh',
+	'colorpoint shorthair',
+	'cornish rex',
+	'cymric',
+	'cyprus',
+	'devon rex',
+	'donskoy',
+	'dragon li',
+	'egyptian mau',
+	'european burmese',
+	'exotic shorthair',
+	'havana brown',
+	'himalayan',
+	'japanese bobtail',
+	'javanese',
+	'khao manee',
+	'korat',
+	'kurilian',
+	'laperm',
+	'maine coon',
+	'malayan',
+	'manx',
+	'munchkin',
+	'nebelung',
+	'norwegian forest cat',
+	'ocicat',
+	'oriental',
+	'persian',
+	'pixie-bob',
+	'ragamuffin',
+	'ragdoll',
+	'russian blue',
+	'savannah',
+	'scottish fold',
+	'selkirk rex',
+	'siamese',
+	'siberian',
+	'singapura',
+	'snowshoe',
+	'somali',
+	'sphynx',
+	'tonkinese',
+	'toyger',
+	'turkish angora',
+	'turkish van',
+	'york chocolate',
+];
+
+catImagesList = [
+	{
+		name: 'abyssinian',
+		image: 'https://cdn2.thecatapi.com/images/unPP08xOZ.jpg',
+	},
+	{
+		name: 'aegean',
+		image: 'https://www.europetnet.org/images/catbreeds/241.jpg',
+	},
+	{
+		name: 'american bobtail',
+		image: 'https://cdn2.thecatapi.com/images/d55E_KMKZ.jpg',
+	},
+	{
+		name: 'american curl',
+		image: 'https://cdn2.thecatapi.com/images/vJB8rwfdX.jpg',
+	},
+	{
+		name: 'american shorthair',
+		image: 'https://cdn2.thecatapi.com/images/MuEGe1-Sz.jpg',
+	},
+	{
+		name: 'american wirehair',
+		image: 'https://cdn2.thecatapi.com/images/Q6TDnfM_O.jpg',
+	},
+	{
+		name: 'arabian mau',
+		image: 'https://cdn2.thecatapi.com/images/m1TeHn2dH.jpg',
+	},
+	{
+		name: 'australian mist',
+		image: 'https://cdn2.thecatapi.com/images/_6x-3TiCA.jpg',
+	},
+	{
+		name: 'balinese',
+		image: 'https://cdn2.thecatapi.com/images/obRjvWv-e.jpg',
+	},
+	{ name: 'bambino', image: 'https://cdn2.thecatapi.com/images/Oaoo1ky3A.jpg' },
+	{ name: 'bengal', image: 'https://cdn2.thecatapi.com/images/Rl39SPjDO.png' },
+	{ name: 'birman', image: 'https://cdn2.thecatapi.com/images/qg0_IodJp.png' },
+	{ name: 'bombay', image: 'https://cdn2.thecatapi.com/images/BkksyH95Z.jpg' },
+	{
+		name: 'british longhair',
+		image: 'https://cdn2.thecatapi.com/images/7isAO4Cav.jpg',
+	},
+	{
+		name: 'british shorthair',
+		image: 'https://cdn2.thecatapi.com/images/_7U4xGLO_.jpg',
+	},
+	{ name: 'burmese', image: 'https://cdn2.thecatapi.com/images/4lXnnfxac.jpg' },
+	{
+		name: 'burmilla',
+		image: 'https://cdn2.thecatapi.com/images/r530zDuJU.jpg',
+	},
+	{
+		name: 'california spangled',
+		image: 'https://cdn2.thecatapi.com/images/B1ERTmgph.jpg',
+	},
+	{
+		name: 'chantilly-tiffany',
+		image: 'https://cdn2.thecatapi.com/images/TR-5nAd_S.jpg',
+	},
+	{
+		name: 'chartreux',
+		image: 'https://cdn2.thecatapi.com/images/ZSV_8HqoS.jpg',
+	},
+	{ name: 'chausie', image: 'https://cdn2.thecatapi.com/images/r0s90j0I8.jpg' },
+	{ name: 'cheetoh', image: 'https://cdn2.thecatapi.com/images/yPmEpKmnR.jpg' },
+	{
+		name: 'colorpoint shorthair',
+		image: 'https://cdn2.thecatapi.com/images/yUhSG7Vv7.jpg',
+	},
+	{
+		name: 'cornish rex',
+		image: 'https://cdn2.thecatapi.com/images/o81wWm6-Z.jpg',
+	},
+	{ name: 'cymric', image: 'https://cdn2.thecatapi.com/images/WXcD6qZEn.jpg' },
+	{ name: 'cyprus', image: 'https://cdn2.thecatapi.com/images/tJbzb7FKo.jpg' },
+	{
+		name: 'devon rex',
+		image: 'https://cdn2.thecatapi.com/images/yFwzO96ds.jpg',
+	},
+	{
+		name: 'donskoy',
+		image:
+			'https://www.tica.org/images/TopCats/2023/resized/BOB/Donskoy%201%20Kitten%20Ketrin%20Betcher.jpg',
+	},
+	{
+		name: 'dragon li',
+		image: 'https://cdn2.thecatapi.com/images/POPfuPq8t.jpg',
+	},
+	{
+		name: 'egyptian mau',
+		image: 'https://cdn2.thecatapi.com/images/EzYYrmFp7.jpg',
+	},
+	{
+		name: 'european burmese',
+		image: 'https://cdn2.thecatapi.com/images/d8sbdRtLJ.jpg',
+	},
+	{
+		name: 'exotic shorthair',
+		image: 'https://cdn2.thecatapi.com/images/cw18Op1Ok.jpg',
+	},
+	{
+		name: 'havana brown',
+		image: 'https://cdn2.thecatapi.com/images/wWZPyq5Jm.jpg',
+	},
+	{
+		name: 'himalayan',
+		image: 'https://cdn2.thecatapi.com/images/lZOJKmkxY.jpg',
+	},
+	{
+		name: 'japanese bobtail',
+		image: 'https://cdn2.thecatapi.com/images/RfdGhgEf3.jpg',
+	},
+	{
+		name: 'javanese',
+		image: 'https://cdn2.thecatapi.com/images/cua3trGPU.jpg',
+	},
+	{
+		name: 'khao manee',
+		image: 'https://cdn2.thecatapi.com/images/iyFN2mF8l.jpg',
+	},
+	{ name: 'korat', image: 'https://cdn2.thecatapi.com/images/DbwiefiaY.png' },
+	{
+		name: 'kurilian',
+		image:
+			'https://upload.wikimedia.org/wikipedia/commons/8/82/Kurilian_bobtail.JPG',
+	},
+	{ name: 'laperm', image: 'https://cdn2.thecatapi.com/images/w6CQYXYjy.jpg' },
+	{
+		name: 'maine coon',
+		image: 'https://cdn2.thecatapi.com/images/vXb2jdNoo.jpg',
+	},
+	{
+		name: 'malayan',
+		image:
+			'https://upload.wikimedia.org/wikipedia/commons/f/f9/IMGP1134_%2851750850378%29.jpg',
+	},
+	{ name: 'manx', image: 'https://cdn2.thecatapi.com/images/fhYh2PDcC.jpg' },
+	{
+		name: 'munchkin',
+		image: 'https://cdn2.thecatapi.com/images/vDFI6jI2O.jpg',
+	},
+	{
+		name: 'nebelung',
+		image: 'https://cdn2.thecatapi.com/images/KpHqQPUPW.jpg',
+	},
+	{
+		name: 'norwegian forest cat',
+		image: 'https://cdn2.thecatapi.com/images/gXyHm7ozO.jpg',
+	},
+	{ name: 'ocicat', image: 'https://cdn2.thecatapi.com/images/NZ_C9Edot.jpg' },
+	{
+		name: 'oriental',
+		image: 'https://cdn2.thecatapi.com/images/CQGI7O47l.jpg',
+	},
+	{ name: 'persian', image: 'https://cdn2.thecatapi.com/images/d_RzH-Zft.jpg' },
+	{
+		name: 'pixie-bob',
+		image: 'https://cdn2.thecatapi.com/images/b4paC3RGM.jpg',
+	},
+	{
+		name: 'ragamuffin',
+		image: 'https://cdn2.thecatapi.com/images/--YZl1YWO.jpg',
+	},
+	{ name: 'ragdoll', image: 'https://cdn2.thecatapi.com/images/zgVRo2pWV.jpg' },
+	{
+		name: 'russian blue',
+		image: 'https://cdn2.thecatapi.com/images/DdmsQrCAv.jpg',
+	},
+	{
+		name: 'savannah',
+		image: 'https://cdn2.thecatapi.com/images/A54VUs7Q6.jpg',
+	},
+	{
+		name: 'scottish fold',
+		image: 'https://cdn2.thecatapi.com/images/tOGSsMx5J.jpg',
+	},
+	{
+		name: 'selkirk rex',
+		image: 'https://cdn2.thecatapi.com/images/enV_ZqSpp.jpg',
+	},
+	{ name: 'siamese', image: 'https://cdn2.thecatapi.com/images/Ttk_tdV4g.jpg' },
+	{
+		name: 'siberian',
+		image: 'https://cdn2.thecatapi.com/images/--ovPy5Lb.jpg',
+	},
+	{
+		name: 'singapura',
+		image: 'https://cdn2.thecatapi.com/images/VGzO6r82_.jpg',
+	},
+	{
+		name: 'snowshoe',
+		image: 'https://cdn2.thecatapi.com/images/pBRl_KzA5.jpg',
+	},
+	{ name: 'somali', image: 'https://cdn2.thecatapi.com/images/BjTEe8vY2.jpg' },
+	{ name: 'sphynx', image: 'https://cdn2.thecatapi.com/images/bRLzjs5nf.jpg' },
+	{
+		name: 'tonkinese',
+		image: 'https://cdn2.thecatapi.com/images/e9GFNGkwq.jpg',
+	},
+	{ name: 'toyger', image: 'https://cdn2.thecatapi.com/images/2CL5AqIfV.png' },
+	{
+		name: 'turkish angora',
+		image: 'https://cdn2.thecatapi.com/images/7CGV6WVXq.jpg',
+	},
+	{
+		name: 'turkish van',
+		image:
+			'https://i.pinimg.com/736x/76/f1/7e/76f17e737e4d60fd9feade8e7887b28f.jpg',
+	},
+	{
+		name: 'york chocolate',
+		image:
+			'https://www.catbreedslist.com/uploads/cat-pictures/york-chocolate-2.jpg?ezimgfmt=ng%3Awebp%2Fngcb1%2Frs%3Adevice%2Frscb1-2',
+	},
+];
+
+let catsObject;
 
 // console.log(sequence1[66]);
 // const sequence2 = [3, 0, 27, 6, 61, 48, 43, 14, 47, 42, 11, 24, 46, 28, 26, 23, 15, 51, 2, 33, 30, 52, 17, 66, 53, 12, 16, 21, 25, 10, 13, 36, 54, 58, 8, 60, 64, 4, 44, 57, 1, 41, 49, 5, 50, 59, 18, 39, 32, 37, 65, 9, 7, 29, 38, 45, 56, 19, 20, 63, 55, 22, 62, 31, 35, 34, 40]
@@ -29,10 +321,19 @@ let catOfTheDay;
 // 	return array;
 // }
 
-function fetchBreeds(index) {
-	// If the day exceeds 67 days, then we remove the previous breeds array from local storage then fetch a new randomized list, else we just grab the pre-existing cat breeds list from local storage
+function fetchCatsFromLocal() {
+	return JSON.parse(localStorage.getItem('catBreeds'));
+}
 
-	const randomCat = sequence1[index];
+function getTodaysCat(index) {
+	let randomNumber = sequence1[index];
+	catOfTheDay = catsObject[randomNumber];
+	console.log(catOfTheDay);
+}
+
+function fetchBreeds() {
+	let catsArray = [];
+	// const randomCat = sequence1[index];
 
 	// Fetches API
 	fetch(`https://api.thecatapi.com/v1/breeds`)
@@ -40,22 +341,37 @@ function fetchBreeds(index) {
 			return response.json();
 		})
 		.then(function (data) {
-			// console.log(data[randomCat]);
-			const catBreed = data[randomCat];
+			// // console.log(data[randomCat]);
+			// const catBreed = data[randomCat];
 
-			catOfTheDay = {
-				id: catBreed.id,
-				name: catBreed.name,
-				shortTail: catBreed.suppressed_tail,
-				shortLegs: catBreed.short_legs,
-				weight: catBreed.weight.imperial,
-				lifespan: catBreed.life_span,
-				hairless: catBreed.hairless,
-				altName: catBreed.alt_names,
-			};
-			// console.log(catOfTheDay);
+			// catOfTheDay = {
+			// 	id: catBreed.id,
+			// 	name: catBreed.name,
+			// 	shortTail: catBreed.suppressed_tail,
+			// 	shortLegs: catBreed.short_legs,
+			// 	weight: catBreed.weight.imperial,
+			// 	lifespan: catBreed.life_span,
+			// 	hairless: catBreed.hairless,
+			// 	altName: catBreed.alt_names,
+			// };
+
+			for (let i = 0; i < data.length; i++) {
+				cat = {
+					id: data[i].id,
+					name: data[i].name,
+					shortTail: data[i].suppressed_tail,
+					shortLegs: data[i].short_legs,
+					weight: data[i].weight.imperial,
+					lifespan: data[i].life_span,
+					hairless: data[i].hairless,
+					altName: data[i].alt_names,
+				};
+
+				catsArray.push(cat);
+			}
+			localStorage.setItem('catBreeds', JSON.stringify(catsArray));
+			catsObject = fetchCatsFromLocal();
 		});
-	// console.log(catOfTheDay);
 }
 
 function addDays(date, period) {
@@ -106,7 +422,8 @@ async function checkDate() {
 		if (lastReset.toISOString() === todaysDate.toISOString()) {
 			const index = 0;
 			// const newDate = todaysDate;
-			fetchBreeds(index);
+			// fetchBreeds(index);
+			getTodaysCat(index);
 		} else {
 			const daysDifference = dateDiffInDays(lastReset, todaysDate);
 
@@ -116,9 +433,9 @@ async function checkDate() {
 
 			// Sets the new date when there is a reset
 			localStorage.setItem('date', JSON.stringify(newDate));
-			// localStorage.setItem('day', index);
 
-			fetchBreeds(index);
+			// fetchBreeds(index);
+			getTodaysCat(index);
 		}
 	} // Else if there is nothing in local storage, make the beginning date the last reset, then update the days to calculate which rotation we are on and the index
 	else {
@@ -131,20 +448,94 @@ async function checkDate() {
 		localStorage.setItem('date', JSON.stringify(newDate));
 		// console.log(`THIS IS WHEN LOCAL IS EMPTY (DATE): ${newDate}`);
 		// console.log(`THIS IS WHEN LOCAL IS EMPTY (INDEX): ${index}`);
-		fetchBreeds(index);
+		// fetchBreeds(index);
+		getTodaysCat(index);
 	}
 }
 
 // Loads the page after 2 seconds to give enough time to fetch API and store guess of the day
 function load() {
 	// gameBody.setAttribute('style', 'display: none');
-	setTimeout(showHTML, 2000);
-	checkDate();
+	// const catBreeds = JSON.parse(localStorage.getItem('catBreeds'));
+	catsObject = fetchCatsFromLocal();
+	// console.log(catBreeds);
+	if (catsObject) {
+		checkDate();
+		showHTML();
+	} else {
+		fetchBreeds();
+		setTimeout(showHTML, 2000);
+		setTimeout(checkDate, 2000);
+
+		// checkDate();
+	}
+
+	// setTimeout(showHTML, 2000);
+	// checkDate();
 }
 
 function showHTML() {
 	gameBody.setAttribute('style', 'display: visible');
-	console.log(catOfTheDay);
+	// console.log(catOfTheDay);
 }
 
+function compareGuess(guess, index) {
+	// console.log(`index of this guess is ${index}`);
+	if (catOfTheDay.name.toLowerCase() === guess) {
+		console.log('match');
+	} else {
+		console.log('no match');
+		// console.log(`index of wrong guess is: ${index}`);
+		getWrongGuess(index);
+	}
+}
+
+function getWrongGuess(index) {
+	const wrongCat = catsObject[index];
+	// console.log(wrongCat);
+	// createCards(wrongCat);
+}
+
+function updateGuessToLocal(guess) {
+	// Check if it is an actual cat breed
+	if (catList.includes(guess)) {
+		const indexofGuess = catList.indexOf(guess);
+		// console.log(`FIRST CHECK OF INDEX: ${indexofGuess}`);
+		let userGuesses = JSON.parse(localStorage.getItem('guesses'));
+
+		if (userGuesses === null) {
+			userGuesses = [];
+		}
+
+		const guessInfo = {
+			name: catsObject[indexofGuess].name,
+			shortTail: catsObject[indexofGuess].suppressed_tail,
+			shortLegs: catsObject[indexofGuess].short_legs,
+			weight: catsObject[indexofGuess].weight.imperial,
+			lifespan: catsObject[indexofGuess].life_span,
+			hairless: catsObject[indexofGuess].hairless,
+		};
+
+		userGuesses.push(guessInfo);
+		localStorage.setItem('guesses', JSON.stringify(userGuesses));
+
+		compareGuess(guess, indexofGuess);
+		// If it is not a cat, don't add it to local and just return
+	} else {
+		return;
+	}
+}
+
+submitBtn.addEventListener('click', function () {
+	let catInput = userInput.value;
+	// console.log(catInput);
+	catInput = catInput.toLowerCase();
+	// compareGuess(catInput);
+	updateGuessToLocal(catInput);
+	userInput.value = '';
+});
+
 load();
+
+// INSTEAD OF FETCHING API EVERYDAY, FETCH IT IF THE LOCAL STORAGE IS EMPTY/DNE
+// THEN ON PAGE LOAD, STORE IT IN VARIABLE AND CHECK THAT INSTEAD
