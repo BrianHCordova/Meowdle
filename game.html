@@ -1,73 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/game.css">
-		<title>Meowdle</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	</head>
-	<body id="game-body" style="display: none;">
-		<nav>
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo"></a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="#">Link 1</a></li>
-					<li><a href="#">Link 2</a></li>
-					<!-- Add more navigation items as needed -->
-				</ul>
-			</div>
-		</nav>
-		<h1 class="center-align">Meowdle &#128008;</h1> <!-- Centered Meowdle -->
-	  </header>
-	  <div class="hint-box center-align">
-		<h2 class="guess">Guess Today's Cat</h2>
-		<a class="waves-effect waves-light btn">Hint 1</a>
-		<a class="waves-effect waves-light btn">Hint 2</a>
-		<a class="waves-effect waves-light btn">Hint 3</a>
-	  </div>
-	  <div class="container">
-		<div class="content">
-			<div class="input-container">
-				<input type="text" id="input" required="" autocomplete="off">
-				<label for="input" class="label">Enter Text</label>
-				<div class="underline"></div>
-			  </div>
-			<div class="button">
-				<a id="input-submit-btn" class="waves-effect waves-light btn-large">Guess!</a>
-			</div>
-			<div class="attribute-container valign-wrapper">
-				<div class="row displayed-cards">
-					<div class="col s2 z-depth-0">
-						<div class="card z-depth-0 transparent attribute-card">Breed</div>
-					  </div>
-					  <div class="col s2">
-						<div class="card z-depth-0 transparent attribute-card">Short Tail</div>
-					  </div>
-					  <div class="col s2">
-						<div class="card z-depth-0 transparent attribute-card">Short Leg</div>
-					  </div>
-					  <div class="col s2">
-						<div class="card z-depth-0 transparent attribute-card">Weight</div>
-					  </div>
-					  <div class="col s2">
-						<div class="card z-depth-0 transparent attribute-card">Lifespan</div>
-					  </div>
-					  <div class="col s2">
-						<div class="card z-depth-0 transparent attribute-card">Hairless</div>
-					  </div>
-				</div>
-				<div class="card-container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meowdle</title>
+    <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body id="game-body" style="display: none;">
 
-				</div>
-			</div>
-		</div>
-		<div class="blob">
-		</div>
-	  </div>
+<!-- Navbar -->
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#" id="dark-light-mode">&#127769;</a></li> <!-- Dark/light mode button -->
+            <li><a href="#" id="how-to-play-button">&#x2753;</a></li> <!-- How-to-play button -->
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </div>
+</nav>
 
-		<!-- Materialize JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		<script src="./assets/js/game.js"></script>
-	</body>
+<h1 class="center-align">Meowdle &#128008;</h1> <!-- Centered Meowdle -->
+
+<div class="container">
+    <div class="content">
+        <div class="input-container">
+            <input type="text" id="input" required="">
+            <label for="input" class="label">Enter Text</label>
+            <div class="underline"></div>
+        </div>
+        <div class="button">
+            <a id="input-submit-btn" class="waves-effect waves-light btn-large">Guess!</a>
+        </div>
+        <div class="attribute-container valign-wrapper">
+            <div class="row displayed-cards">
+                <div class="col s2 z-depth-0">
+                    <div class="card z-depth-0 transparent attribute-card">Breed</div>
+                </div>
+                <div class="col s2">
+                    <div class="card z-depth-0 transparent attribute-card">Short Tail</div>
+                </div>
+                <div class="col s2">
+                    <div class="card z-depth-0 transparent attribute-card">Short Leg</div>
+                </div>
+                <div class="col s2">
+                    <div class="card z-depth-0 transparent attribute-card">Weight</div>
+                </div>
+                <div class="col s2">
+                    <div class="card z-depth-0 transparent attribute-card">Lifespan</div>
+                </div>
+                <div class="col s2">
+                    <div class="card z-depth-0 transparent attribute-card">Hairless</div>
+                </div>
+            </div>
+            <div class="card-container">
+
+            </div>
+        </div>
+    </div>
+    <div class="blob"></div>
+</div>
+
+<!-- Modal Structure -->
+<div id="how-to-play-modal" class="modal">
+    <div class="modal-content">
+        <h4>How to Play</h4>
+        <p><strong>Guess One:</strong> Guess any cat breed you can think of "use the drop down list to help guide you". We can guess russian blue.</p>
+        <p><strong>Guess Two:</strong> We know that the cat's breed does not have a short tail and is not hairless. </p>
+        <p><strong>Guess Three:</strong> Using context clues we can deduce what the cat breed is with more guesses!</p>
+        <!-- Add more steps as needed -->
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./assets/js/game.js"></script>
+
+<script>
+    // Function to toggle between light and dark modes
+    function toggleDarkLightMode() {
+        const body = document.body;
+        const isDarkMode = body.classList.toggle('dark-mode');
+
+        // Save the user's preferred mode in local storage
+        localStorage.setItem('darkMode', isDarkMode ? 'dark' : 'light');
+
+        // Update the button icon based on the current mode
+        const darkLightModeButton = document.getElementById('dark-light-mode');
+        darkLightModeButton.innerHTML = isDarkMode ? '&#127770;' : '&#127769;';
+    }
+
+    // Event listener for the dark/light mode button
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkLightModeButton = document.getElementById('dark-light-mode');
+        darkLightModeButton.addEventListener('click', toggleDarkLightMode);
+
+        // Check if the user has a preferred mode saved in local storage
+        const userPreferredMode = localStorage.getItem('darkMode');
+        if (userPreferredMode === 'dark') {
+            toggleDarkLightMode(); // If dark mode is preferred, toggle it on
+        }
+
+        // Initialize modal for how-to-play button
+        const howToPlayButton = document.getElementById('how-to-play-button');
+        const howToPlayModal = document.getElementById('how-to-play-modal');
+        M.Modal.init(howToPlayModal);
+        howToPlayButton.addEventListener('click', function() {
+            const instance = M.Modal.getInstance(howToPlayModal);
+            instance.open();
+        });
+    });
+</script>
+
+</body>
 </html>

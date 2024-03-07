@@ -133,3 +133,29 @@ body {
 		scale: 1.05;
 	}
 }
+/* Default light mode styles */
+body {
+    background-color: #fff; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+body.dark-mode h1 {
+    color: #fff; /* White text color for h1 in dark mode */
+}
+
+/* Dark mode styles for modal content */
+.dark-mode .modal-content {
+    color: #fff; /* White text color in dark mode */
+    background-color: #444; /* Dark background color for modal content */
+}
+/* Dark mode styles for modal footer */
+.dark-mode .modal-footer {
+    background-color: #444; /* Black background color for modal footer */
+    color: #fff; /* White text color in modal footer */
+}
