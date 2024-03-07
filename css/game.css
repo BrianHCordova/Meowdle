@@ -1,136 +1,135 @@
 nav {
-    background-color: transparent !important;
-    box-shadow: none !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
 }
 * {
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    background: whitesmoke;
-    height: 98dvh;
-  }
-  
-  .container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: grid;
-    place-items: center;
-    isolation: isolate;
-    overflow: hidden;
-  }
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: whitesmoke;
+	height: 98dvh;
+}
 
-  .input-container {
-    position: relative;
-    margin: 50px auto;
-    width: 200px;
-  }
-  
-  .input-container input[type="text"] {
-    font-size: 20px;
-    width: 100%;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    padding: 5px 0;
-    background-color: transparent;
-    outline: none;
-  }
-  
-  .input-container .label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #161616;
-    transition: all 0.3s ease;
-    pointer-events: none;
-  }
-  
-  .input-container input[type="text"]:focus ~ .label,
-  .input-container input[type="text"]:valid ~ .label {
-    top: -20px;
-    font-size: 20px;
-    color: #000000;
-  }
-  
-  .input-container .underline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background-color: #333;
-    transform: scaleX(0);
-    transition: all 0.3s ease;
-  }
-  
-  .input-container input[type="text"]:focus ~ .underline,
-  .input-container input[type="text"]:valid ~ .underline {
-    transform: scaleX(1);
-  }
+.container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: grid;
+	place-items: center;
+	isolation: isolate;
+	overflow: hidden;
+}
 
-  .button {
-    display: grid;
-    justify-content: center;
-    padding-bottom: 20px;
-  }
+.input-container {
+	position: relative;
+	margin: 50px auto;
+	width: 200px;
+}
 
-  .attribute-container {
-    color: black;
-    font-size: large;
-    text-align: center;
-    border: solid black 2px;
-    align-items: end;
-    visibility: hidden;
-  }
+.input-container input[type='text'] {
+	font-size: 20px;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	padding: 5px 0;
+	background-color: transparent;
+	outline: none;
+}
 
-  .displayed-cards {
-    display: flex;
-    align-items: end;
-    margin-bottom: 0px !important;
-  }
+.input-container .label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #161616;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
 
-  .attribute-card{
-    border-bottom: 1px solid black;
-  }
- 
-  .blob {
-    position: absolute;
-    opacity: 0.5;
-    width: 400px;
-    aspect-ratio: 1/1;
-    animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite
-      alternate forwards;
-    filter: blur(40px);
-    z-index: -1;
-    background: linear-gradient(
-      47deg,
-      rgba(255, 88, 139, 1) 21%,
-      rgb(0 164 173) 67%,
-      rgba(118, 74, 166, 1) 81%
-    );
-  
-    /*  Optional  */
-    /*   box-shadow: inset 50px 50px 17px 0px #ff588b,
+.input-container input[type='text']:focus ~ .label,
+.input-container input[type='text']:valid ~ .label {
+	top: -20px;
+	font-size: 20px;
+	color: #000000;
+}
+
+.input-container .underline {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	width: 100%;
+	background-color: #333;
+	transform: scaleX(0);
+	transition: all 0.3s ease;
+}
+
+.input-container input[type='text']:focus ~ .underline,
+.input-container input[type='text']:valid ~ .underline {
+	transform: scaleX(1);
+}
+
+.button {
+	display: grid;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+.attribute-container {
+	color: black;
+	font-size: large;
+	text-align: center;
+	border: solid black 2px;
+	align-items: end;
+	visibility: hidden;
+}
+
+.displayed-cards {
+	display: flex;
+	align-items: end;
+	margin-bottom: 0px !important;
+}
+
+.attribute-card {
+	border-bottom: 1px solid black;
+}
+
+.blob {
+	position: absolute;
+	opacity: 0.5;
+	width: 400px;
+	aspect-ratio: 1/1;
+	animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite
+		alternate forwards;
+	filter: blur(40px);
+	z-index: -1;
+	background: linear-gradient(
+		47deg,
+		rgba(255, 88, 139, 1) 21%,
+		rgb(0 164 173) 67%,
+		rgba(118, 74, 166, 1) 81%
+	);
+
+	/*  Optional  */
+	/*   box-shadow: inset 50px 50px 17px 0px #ff588b,
       inset 100px 100px 17px 0px #66319f; */
-  }
-  
-  @keyframes animate {
-    0% {
-      translate: 40% -25%;
-      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
-    }
-    50% {
-      translate: 0% 13%;
-      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
-      rotate: 41deg;
-      scale: 1.15;
-    }
-    100% {
-      translate: -45% 39%;
-      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
-      rotate: -60deg;
-      scale: 1.05;
-    }
-  }
-  
+}
+
+@keyframes animate {
+	0% {
+		translate: 40% -25%;
+		border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+	}
+	50% {
+		translate: 0% 13%;
+		border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+		rotate: 41deg;
+		scale: 1.15;
+	}
+	100% {
+		translate: -45% 39%;
+		border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+		rotate: -60deg;
+		scale: 1.05;
+	}
+}
