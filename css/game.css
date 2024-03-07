@@ -160,3 +160,9 @@ body.dark-mode h1 {
     background-color: #444; /* Black background color for modal footer */
     color: #fff; /* White text color in modal footer */
 }
+
+nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    position: absolute;
+}
