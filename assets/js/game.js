@@ -410,7 +410,21 @@ async function checkDate() {
 	// Update it from there
 	let lastReset = new Date('1/1/2024');
 
+	// const lastVisited = JSON.parse(localStorage.getItem('lastVisit'));
+	const lastVisited = localStorage.getItem('lastVisit');
+
 	const todaysDate = new Date();
+	const todayDateUTC = Date.UTC(
+		todaysDate.getFullYear(),
+		todaysDate.getMonth(),
+		todaysDate.getDate()
+	);
+
+	if (todayDateUTC.toString() !== lastVisited) {
+		// localStorage.setItem('lastVisit', JSON.stringify(todaysDate));
+		localStorage.setItem('lastVisit', todayDateUTC);
+		localStorage.removeItem('guesses');
+	}
 
 	const resetDate = JSON.parse(localStorage.getItem('date'));
 
