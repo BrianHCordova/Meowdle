@@ -367,6 +367,7 @@ function fetchBreeds() {
 					lifespan: data[i].life_span,
 					hairless: data[i].hairless,
 					altName: data[i].alt_names,
+					number: i,
 				};
 
 				catsArray.push(cat);
@@ -477,6 +478,7 @@ function load() {
 	// console.log(catBreeds);
 	if (catsObject) {
 		checkDate();
+		checkGuessesInLocal();
 		showHTML();
 	} else {
 		fetchBreeds();
@@ -488,6 +490,22 @@ function load() {
 
 	// setTimeout(showHTML, 2000);
 	// checkDate();
+}
+
+function checkGuessesInLocal() {
+	let anyGuesses = JSON.parse(localStorage.getItem('guesses'));
+
+	if (anyGuesses === null) {
+		anyGuesses = [];
+	}
+
+	guessContainerEl.innerHTML = '';
+
+	for (guess of anyGuesses) {
+		// const guessCard = createCards(guess);
+		createCards(guess);
+		// guessContainerEl.appendChild(guessCard);
+	}
 }
 
 function showHTML() {
@@ -506,80 +524,20 @@ function compareGuess(guess, index) {
 	}
 }
 
+// function getWrongGuess(index) {
+// 	const wrongCat = catsObject[index];
+// 	// console.log(wrongCat);
+// 	// createCards(wrongCat);
+// }
+
 function getWrongGuess(index) {
 	const wrongCat = catsObject[index];
 	// console.log(wrongCat);
-	// createCards(wrongCat);
+	createCards(wrongCat);
 }
 
-function getWrongGuess(index) {
-	const wrongCat = catsObject[index];
-	console.log(wrongCat);
-	createCards(wrongCat, index);
-}
-
-function createCards(cat, index) {
+function createCards(cat) {
 	// console.log(`index is: ${index}`);
-	// event.preventDefault();
-
-	// // Creates div with class of row
-	// const divEl = document.createElement('div');
-	// divEl.setAttribute('class', 'row displayed-cards');
-
-	// const breedEl = document.createElement('div');
-	// breedEl.setAttribute('class', 'card s2');
-	// const breedImg = document.createElement('img');
-	// breedImg.setAttribute('src', `${catImagesList[index].image}`);
-	// breedImg.setAttribute('alt', catImagesList[index].name);
-	// breedImg.setAttribute('class', 'responsive-img');
-	// breedEl.appendChild(breedImg);
-
-	// const tailEl = document.createElement('div');
-	// tailEl.setAttribute('class', 'card s2');
-	// let tail;
-	// if (cat.shortTail === 0) {
-	// 	tail = 'No';
-	// } else {
-	// 	tail = 'Yes';
-	// }
-	// tailEl.textContent = tail;
-
-	// const legEl = document.createElement('div');
-	// legEl.setAttribute('class', 'card s2');
-	// let legs;
-	// if (cat.shortLegs === 0) {
-	// 	legs = 'No';
-	// } else {
-	// 	legs = 'Yes';
-	// }
-	// legEl.textContent = legs;
-
-	// const weightEl = document.createElement('div');
-	// weightEl.setAttribute('class', 'card s2');
-	// weightEl.textContent = `${cat.weight} lbs`;
-
-	// const lifespanEl = document.createElement('div');
-	// lifespanEl.setAttribute('class', 'card s2');
-	// lifespanEl.textContent = `${cat.lifespan} years`;
-
-	// const hairlessEl = document.createElement('div');
-	// hairlessEl.setAttribute('class', 'card s2');
-	// let hairless;
-	// if (cat.hairless === 0) {
-	// 	hairless = 'No';
-	// } else {
-	// 	hairless = 'Yes';
-	// }
-	// hairlessEl.textContent = hairless;
-
-	// divEl.appendChild(breedEl);
-	// divEl.appendChild(tailEl);
-	// divEl.appendChild(legEl);
-	// divEl.appendChild(weightEl);
-	// divEl.appendChild(lifespanEl);
-	// divEl.appendChild(hairlessEl);
-
-	// cardContainerEl.appendChild(divEl);
 
 	const divEl = document.createElement('div');
 	divEl.setAttribute('class', 'card-container');
@@ -587,8 +545,8 @@ function createCards(cat, index) {
 	const breedEl = document.createElement('div');
 	breedEl.setAttribute('class', 'custom-card');
 	const breedImg = document.createElement('img');
-	breedImg.setAttribute('src', `${catImagesList[index].image}`);
-	breedImg.setAttribute('alt', catImagesList[index].name);
+	breedImg.setAttribute('src', `${catImagesList[cat.number].image}`);
+	breedImg.setAttribute('alt', catImagesList[cat.number].name);
 	// breedImg.setAttribute('class', 'responsive-img');
 	breedEl.appendChild(breedImg);
 
@@ -660,11 +618,12 @@ function updateGuessToLocal(guess) {
 
 		const guessInfo = {
 			name: catsObject[indexofGuess].name,
-			shortTail: catsObject[indexofGuess].suppressed_tail,
-			shortLegs: catsObject[indexofGuess].short_legs,
-			weight: catsObject[indexofGuess].weight.imperial,
-			lifespan: catsObject[indexofGuess].life_span,
+			shortTail: catsObject[indexofGuess].shortTail,
+			shortLegs: catsObject[indexofGuess].shortLegs,
+			weight: catsObject[indexofGuess].weight,
+			lifespan: catsObject[indexofGuess].lifespan,
 			hairless: catsObject[indexofGuess].hairless,
+			number: catsObject[indexofGuess].number,
 		};
 
 		userGuesses.push(guessInfo);
