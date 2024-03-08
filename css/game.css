@@ -128,11 +128,11 @@ body {
 	border: 2px solid black;
 }
 
-.displayed-cards {
+/* .displayed-cards {
 	display: flex;
 	align-items: end;
 	margin-bottom: 0px !important;
-}
+} */
 
 .attribute-card {
 	border-bottom: 1px solid black;
