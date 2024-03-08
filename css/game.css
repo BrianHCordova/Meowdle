@@ -6,6 +6,7 @@ nav {
 	margin: 0;
 	padding: 0;
 }
+
 body {
 	background: whitesmoke;
 	/* height: 98dvh; */
@@ -94,6 +95,8 @@ body {
 	justify-content: space-around;
 	padding: 10px 0px;
 	margin: 20px 0px;
+	/* background-color: #4a4a4a; */
+	background-color: rgb(238, 238, 238);
 }
 
 .attribute {
@@ -156,6 +159,12 @@ body {
       inset 100px 100px 17px 0px #66319f; */
 }
 
+/* .hint-btn-1,
+.hint-btn-2,
+.hint-btn-3 {
+	visibility: visible;
+} */
+
 @keyframes animate {
 	0% {
 		translate: 40% -25%;
@@ -200,6 +209,15 @@ body.dark-mode h1 {
 .dark-mode .modal-footer {
 	background-color: #444; /* Black background color for modal footer */
 	color: #fff; /* White text color in modal footer */
+}
+
+.dark-mode .attribute-container,
+.dark-mode .card-container {
+	background-color: #4a4a4a;
+}
+
+.dark-mode #input {
+	color: white;
 }
 
 nav {

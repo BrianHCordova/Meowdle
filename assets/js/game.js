@@ -2,6 +2,9 @@ const gameBody = document.querySelector('#game-body');
 const userInput = document.querySelector('#input');
 const submitBtn = document.querySelector('#input-submit-btn');
 const guessContainerEl = document.querySelector('.guess-container');
+const hintBtn1 = document.querySelector('#hint-btn-1');
+const hintBtn2 = document.querySelector('#hint-btn-2');
+const hintBtn3 = document.querySelector('#hint-btn-3');
 
 let catOfTheDay;
 
@@ -423,10 +426,13 @@ async function checkDate() {
 		todaysDate.getDate()
 	);
 
+	showHints();
+
 	if (todayDateUTC.toString() !== lastVisited) {
 		// localStorage.setItem('lastVisit', JSON.stringify(todaysDate));
 		localStorage.setItem('lastVisit', todayDateUTC);
 		localStorage.removeItem('guesses');
+		localStorage.setItem('guessCount', 0);
 	}
 
 	const resetDate = JSON.parse(localStorage.getItem('date'));
@@ -516,13 +522,38 @@ function showHTML() {
 }
 
 function compareGuess(guess, index) {
-	// console.log(`index of this guess is ${index}`);
 	if (catOfTheDay.name.toLowerCase() === guess) {
 		console.log('match');
 	} else {
 		console.log('no match');
-		// console.log(`index of wrong guess is: ${index}`);
+
+		// Iterate count by 1 if guess is wrong
+		let count = localStorage.getItem('guessCount');
+		count++;
+		localStorage.setItem('guessCount', count);
+		if (count === 3) {
+			hintBtn1.setAttribute('style', 'display: visible');
+		} else if (count === 5) {
+			hintBtn2.setAttribute('style', 'display: visible');
+		} else if (count === 7) {
+			hintBtn3.setAttribute('style', 'display: visible');
+		}
+
 		getWrongGuess(index);
+	}
+}
+
+function showHints() {
+	let count = localStorage.getItem('guessCount');
+
+	if (count >= 3) {
+		hintBtn1.setAttribute('style', 'display: visible');
+	}
+	if (count >= 5) {
+		hintBtn2.setAttribute('style', 'display: visible');
+	}
+	if (count >= 7) {
+		hintBtn3.setAttribute('style', 'display: visible');
 	}
 }
 
@@ -534,7 +565,7 @@ function compareGuess(guess, index) {
 
 function getWrongGuess(index) {
 	const wrongCat = catsObject[index];
-	// console.log(wrongCat);
+
 	createCards(wrongCat);
 }
 
