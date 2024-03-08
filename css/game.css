@@ -8,7 +8,7 @@ nav {
 }
 
 body {
-	background: #C7C7C7;
+	background: #c7c7c7;
 	/* height: 98dvh; */
 	/* padding-bottom: 50px; */
 }
@@ -167,8 +167,16 @@ body {
 	width: 500px;
 } */
 
-.test-width {
+.input-width {
 	width: 500px;
+}
+
+.custom-container {
+	display: grid;
+	position: relative;
+	place-items: center;
+	isolation: isolate;
+	overflow: hidden;
 }
 
 @keyframes animate {
@@ -230,4 +238,5 @@ nav {
 	background-color: transparent !important;
 	box-shadow: none !important;
 	position: absolute;
+	z-index: 9999;
 }
