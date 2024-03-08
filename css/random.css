@@ -5,7 +5,7 @@
   body {
     background: whitesmoke;
     height: 98dvh;
-  }
+  } 
   
   .container {
     width: 100%;
@@ -17,6 +17,7 @@
     overflow: hidden;
   }
   
+
   .blob {
     position: absolute;
     opacity: 0.5;
