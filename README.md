@@ -25,14 +25,35 @@ Cat Guessing Game is a web application that works like WORDLE but instead uses c
 
 ## Technologies
 -HTML
+
 -CSS
+
 -JavaScript
+
 -MaterializeCSS
 
 ## Links
 Live Demo:  https://housejames.github.io/Meowdle/
 
 GitHub Repository: https://github.com/housejames/Meowdle
+
+## Resources
+CatFact API
+
+* https://catfact.ninja/fact
+
+CatImage API
+
+* https://cataas.com/
+
+TheCatAPI
+
+* https://api.thecatapi.com/v1/breeds
+
+MaterializeCSS
+
+* https://materializecss.com/getting-started.html
+
 
 ## Credits
 
