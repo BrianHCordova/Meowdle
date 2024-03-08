@@ -580,7 +580,7 @@ function createCards(cat) {
 	const breedImg = document.createElement('img');
 	breedImg.setAttribute('src', `${catImagesList[cat.number].image}`);
 	breedImg.setAttribute('alt', catImagesList[cat.number].name);
-	// breedImg.setAttribute('class', 'responsive-img');
+	breedImg.setAttribute('title', `${cat.name}`);
 	breedEl.appendChild(breedImg);
 
 	const tailEl = document.createElement('div');
@@ -591,6 +591,13 @@ function createCards(cat) {
 	} else {
 		tail = 'Yes';
 	}
+
+	if (cat.shortTail === catOfTheDay.shortTail) {
+		tailEl.setAttribute('style', 'background-color: green');
+	} else {
+		tailEl.setAttribute('style', 'background-color: red');
+	}
+
 	tailEl.textContent = tail;
 
 	const legEl = document.createElement('div');
@@ -601,15 +608,32 @@ function createCards(cat) {
 	} else {
 		legs = 'Yes';
 	}
+
+	if (cat.shortLegs === catOfTheDay.shortLegs) {
+		legEl.setAttribute('style', 'background-color: green');
+	} else {
+		legEl.setAttribute('style', 'background-color: red');
+	}
+
 	legEl.textContent = legs;
 
 	const weightEl = document.createElement('div');
 	weightEl.setAttribute('class', 'custom-card');
 	weightEl.textContent = `${cat.weight} lbs`;
+	if (cat.weight === catOfTheDay.weight) {
+		weightEl.setAttribute('style', 'background-color: green');
+	} else {
+		weightEl.setAttribute('style', 'background-color: red');
+	}
 
 	const lifespanEl = document.createElement('div');
 	lifespanEl.setAttribute('class', 'custom-card');
 	lifespanEl.textContent = `${cat.lifespan} years`;
+	if (cat.lifespan === catOfTheDay.lifespan) {
+		lifespanEl.setAttribute('style', 'background-color: green');
+	} else {
+		lifespanEl.setAttribute('style', 'background-color: red');
+	}
 
 	const hairlessEl = document.createElement('div');
 	hairlessEl.setAttribute('class', 'custom-card');
@@ -619,6 +643,13 @@ function createCards(cat) {
 	} else {
 		hairless = 'Yes';
 	}
+
+	if (cat.hairless === catOfTheDay.hairless) {
+		hairlessEl.setAttribute('style', 'background-color: green');
+	} else {
+		hairlessEl.setAttribute('style', 'background-color: red');
+	}
+
 	hairlessEl.textContent = hairless;
 
 	divEl.appendChild(breedEl);
