@@ -717,7 +717,7 @@ function checkGuessesInLocal() {
 
 	for (guess of anyGuesses) {
 		// const guessCard = createCards(guess);
-		console.log(guess);
+		// console.log(guess);
 		createCards(guess);
 		// guessContainerEl.appendChild(guessCard);
 	}
@@ -730,9 +730,10 @@ function showHTML() {
 
 function compareGuess(guess, index) {
 	if (catOfTheDay.name.toLowerCase() === guess) {
-		console.log('match');
+		// console.log('match');
+		createCards(catOfTheDay);
 	} else {
-		console.log('no match');
+		// console.log('no match');
 
 		// Iterate count by 1 if guess is wrong
 		let count = localStorage.getItem('guessCount');
@@ -867,7 +868,8 @@ function createCards(cat) {
 	divEl.appendChild(lifespanEl);
 	divEl.appendChild(hairlessEl);
 
-	guessContainerEl.appendChild(divEl);
+	// guessContainerEl.appendChild(divEl);
+	guessContainerEl.prepend(divEl);
 
 	// const test = document.createElement('div');
 	// test.textContent = 'please work?';
