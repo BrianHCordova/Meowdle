@@ -159,11 +159,17 @@ body {
       inset 100px 100px 17px 0px #66319f; */
 }
 
-/* .hint-btn-1,
-.hint-btn-2,
-.hint-btn-3 {
-	visibility: visible;
+.autocomplete-text-area ul {
+	max-height: 400px;
+}
+
+/* .autocomplete-text-area input {
+	width: 500px;
 } */
+
+.test-width {
+	width: 500px;
+}
 
 @keyframes animate {
 	0% {

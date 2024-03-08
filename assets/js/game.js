@@ -5,6 +5,151 @@ const guessContainerEl = document.querySelector('.guess-container');
 const hintBtn1 = document.querySelector('#hint-btn-1');
 const hintBtn2 = document.querySelector('#hint-btn-2');
 const hintBtn3 = document.querySelector('#hint-btn-3');
+const autocompleteInput = document.querySelector('.autocomplete');
+
+// let test = {
+// 	Banana: 'https://placekitten.com/200/300',
+// 	Apple: null,
+// 	Coconut: null,
+// 	Carrot: null,
+// 	Pear: null,
+// };
+
+const catAutocomplete = {
+	abyssinian: 'https://cdn2.thecatapi.com/images/unPP08xOZ.jpg',
+	aegean: 'https://www.europetnet.org/images/catbreeds/241.jpg',
+
+	'american bobtail': 'https://cdn2.thecatapi.com/images/d55E_KMKZ.jpg',
+
+	'american curl': 'https://cdn2.thecatapi.com/images/vJB8rwfdX.jpg',
+
+	'american shorthair': 'https://cdn2.thecatapi.com/images/MuEGe1-Sz.jpg',
+
+	'american wirehair': 'https://cdn2.thecatapi.com/images/Q6TDnfM_O.jpg',
+
+	'arabian mau': 'https://cdn2.thecatapi.com/images/m1TeHn2dH.jpg',
+
+	'australian mist': 'https://cdn2.thecatapi.com/images/_6x-3TiCA.jpg',
+
+	balinese: 'https://cdn2.thecatapi.com/images/obRjvWv-e.jpg',
+
+	bambino: 'https://cdn2.thecatapi.com/images/Oaoo1ky3A.jpg',
+	bengal: 'https://cdn2.thecatapi.com/images/Rl39SPjDO.png',
+	birman: 'https://cdn2.thecatapi.com/images/qg0_IodJp.png',
+	bombay: 'https://cdn2.thecatapi.com/images/BkksyH95Z.jpg',
+
+	'british longhair': 'https://cdn2.thecatapi.com/images/7isAO4Cav.jpg',
+
+	'british shorthair': 'https://cdn2.thecatapi.com/images/_7U4xGLO_.jpg',
+
+	burmese: 'https://cdn2.thecatapi.com/images/4lXnnfxac.jpg',
+
+	burmilla: 'https://cdn2.thecatapi.com/images/r530zDuJU.jpg',
+
+	'california spangled': 'https://cdn2.thecatapi.com/images/B1ERTmgph.jpg',
+
+	'chantilly-tiffany': 'https://cdn2.thecatapi.com/images/TR-5nAd_S.jpg',
+
+	chartreux: 'https://cdn2.thecatapi.com/images/ZSV_8HqoS.jpg',
+
+	chausie: 'https://cdn2.thecatapi.com/images/r0s90j0I8.jpg',
+	cheetoh: 'https://cdn2.thecatapi.com/images/yPmEpKmnR.jpg',
+
+	'colorpoint shorthair': 'https://cdn2.thecatapi.com/images/yUhSG7Vv7.jpg',
+
+	'cornish rex': 'https://cdn2.thecatapi.com/images/o81wWm6-Z.jpg',
+
+	cymric: 'https://cdn2.thecatapi.com/images/WXcD6qZEn.jpg',
+	cyprus: 'https://cdn2.thecatapi.com/images/tJbzb7FKo.jpg',
+
+	'devon rex': 'https://cdn2.thecatapi.com/images/yFwzO96ds.jpg',
+
+	donskoy:
+		'https://www.tica.org/images/TopCats/2023/resized/BOB/Donskoy%201%20Kitten%20Ketrin%20Betcher.jpg',
+
+	'dragon li': 'https://cdn2.thecatapi.com/images/POPfuPq8t.jpg',
+
+	'egyptian mau': 'https://cdn2.thecatapi.com/images/EzYYrmFp7.jpg',
+
+	'european burmese': 'https://cdn2.thecatapi.com/images/d8sbdRtLJ.jpg',
+
+	'exotic shorthair': 'https://cdn2.thecatapi.com/images/cw18Op1Ok.jpg',
+
+	'havana brown': 'https://cdn2.thecatapi.com/images/wWZPyq5Jm.jpg',
+
+	himalayan: 'https://cdn2.thecatapi.com/images/lZOJKmkxY.jpg',
+
+	'japanese bobtail': 'https://cdn2.thecatapi.com/images/RfdGhgEf3.jpg',
+
+	javanese: 'https://cdn2.thecatapi.com/images/cua3trGPU.jpg',
+
+	'khao manee': 'https://cdn2.thecatapi.com/images/iyFN2mF8l.jpg',
+
+	korat: 'https://cdn2.thecatapi.com/images/DbwiefiaY.png',
+
+	kurilian:
+		'https://upload.wikimedia.org/wikipedia/commons/8/82/Kurilian_bobtail.JPG',
+
+	laperm: 'https://cdn2.thecatapi.com/images/w6CQYXYjy.jpg',
+
+	'maine coon': 'https://cdn2.thecatapi.com/images/vXb2jdNoo.jpg',
+
+	malayan:
+		'https://upload.wikimedia.org/wikipedia/commons/f/f9/IMGP1134_%2851750850378%29.jpg',
+
+	manx: 'https://cdn2.thecatapi.com/images/fhYh2PDcC.jpg',
+
+	munchkin: 'https://cdn2.thecatapi.com/images/vDFI6jI2O.jpg',
+
+	nebelung: 'https://cdn2.thecatapi.com/images/KpHqQPUPW.jpg',
+
+	'norwegian forest cat': 'https://cdn2.thecatapi.com/images/gXyHm7ozO.jpg',
+
+	ocicat: 'https://cdn2.thecatapi.com/images/NZ_C9Edot.jpg',
+
+	oriental: 'https://cdn2.thecatapi.com/images/CQGI7O47l.jpg',
+
+	persian: 'https://cdn2.thecatapi.com/images/d_RzH-Zft.jpg',
+
+	'pixie-bob': 'https://cdn2.thecatapi.com/images/b4paC3RGM.jpg',
+
+	ragamuffin: 'https://cdn2.thecatapi.com/images/--YZl1YWO.jpg',
+
+	ragdoll: 'https://cdn2.thecatapi.com/images/zgVRo2pWV.jpg',
+
+	'russian blue': 'https://cdn2.thecatapi.com/images/DdmsQrCAv.jpg',
+
+	savannah: 'https://cdn2.thecatapi.com/images/A54VUs7Q6.jpg',
+
+	'scottish fold': 'https://cdn2.thecatapi.com/images/tOGSsMx5J.jpg',
+
+	'selkirk rex': 'https://cdn2.thecatapi.com/images/enV_ZqSpp.jpg',
+
+	siamese: 'https://cdn2.thecatapi.com/images/Ttk_tdV4g.jpg',
+
+	siberian: 'https://cdn2.thecatapi.com/images/--ovPy5Lb.jpg',
+
+	singapura: 'https://cdn2.thecatapi.com/images/VGzO6r82_.jpg',
+
+	snowshoe: 'https://cdn2.thecatapi.com/images/pBRl_KzA5.jpg',
+
+	somali: 'https://cdn2.thecatapi.com/images/BjTEe8vY2.jpg',
+	sphynx: 'https://cdn2.thecatapi.com/images/bRLzjs5nf.jpg',
+
+	tonkinese: 'https://cdn2.thecatapi.com/images/e9GFNGkwq.jpg',
+
+	toyger: 'https://cdn2.thecatapi.com/images/2CL5AqIfV.png',
+
+	'turkish angora': 'https://cdn2.thecatapi.com/images/7CGV6WVXq.jpg',
+
+	'turkish van':
+		'https://i.pinimg.com/736x/76/f1/7e/76f17e737e4d60fd9feade8e7887b28f.jpg',
+
+	'york chocolate':
+		'https://www.catbreedslist.com/uploads/cat-pictures/york-chocolate-2.jpg?ezimgfmt=ng%3Awebp%2Fngcb1%2Frs%3Adevice%2Frscb1-2',
+};
+
+// console.log(test['abyssinian']);
 
 let catOfTheDay;
 
@@ -306,6 +451,15 @@ catImagesList = [
 
 let catsObject;
 
+document.addEventListener('DOMContentLoaded', function () {
+	M.Autocomplete.init(autocompleteInput, {
+		// isMultiSelect: true,
+		// limit: 5,
+		minLength: 2,
+		data: catAutocomplete,
+	});
+});
+
 // console.log(sequence1[66]);
 // const sequence2 = [3, 0, 27, 6, 61, 48, 43, 14, 47, 42, 11, 24, 46, 28, 26, 23, 15, 51, 2, 33, 30, 52, 17, 66, 53, 12, 16, 21, 25, 10, 13, 36, 54, 58, 8, 60, 64, 4, 44, 57, 1, 41, 49, 5, 50, 59, 18, 39, 32, 37, 65, 9, 7, 29, 38, 45, 56, 19, 20, 63, 55, 22, 62, 31, 35, 34, 40]
 //const sequence3 = [52, 53, 60, 15, 64, 11, 1, 14, 32, 43, 21, 61, 47, 50, 4, 40, 20, 54, 29, 66, 39, 36, 0, 16, 37, 3, 10, 13, 51, 24, 63, 62, 9, 18, 30, 56, 19, 5, 26, 31, 34, 57, 2, 6, 55, 27, 59, 35, 25, 33, 46, 12, 44, 28, 22, 42, 17, 8, 65, 23, 45, 49, 38, 7, 48, 58, 41]
@@ -511,6 +665,7 @@ function checkGuessesInLocal() {
 
 	for (guess of anyGuesses) {
 		// const guessCard = createCards(guess);
+		console.log(guess);
 		createCards(guess);
 		// guessContainerEl.appendChild(guessCard);
 	}
@@ -579,7 +734,8 @@ function createCards(cat) {
 	breedEl.setAttribute('class', 'custom-card');
 	const breedImg = document.createElement('img');
 	breedImg.setAttribute('src', `${catImagesList[cat.number].image}`);
-	breedImg.setAttribute('alt', catImagesList[cat.number].name);
+	// breedImg.setAttribute('alt', catImagesList[cat.number].name);
+	breedImg.setAttribute('alt', `${cat.name}`);
 	breedImg.setAttribute('title', `${cat.name}`);
 	breedEl.appendChild(breedImg);
 
@@ -707,6 +863,12 @@ submitBtn.addEventListener('click', function () {
 	// compareGuess(catInput);
 	updateGuessToLocal(catInput);
 	userInput.value = '';
+});
+
+userInput.addEventListener('keypress', function (event) {
+	if (event.key === 'Enter') {
+		submitBtn.click();
+	}
 });
 
 load();
