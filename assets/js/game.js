@@ -5,7 +5,16 @@ const guessContainerEl = document.querySelector('.guess-container');
 const hintBtn1 = document.querySelector('#hint-btn-1');
 const hintBtn2 = document.querySelector('#hint-btn-2');
 const hintBtn3 = document.querySelector('#hint-btn-3');
+const hintModal1 = document.querySelector('#hint-1-modal');
+const hintModal2 = document.querySelector('#hint-2-modal');
+const hintModal3 = document.querySelector('#hint-3-modal');
 const autocompleteInput = document.querySelector('.autocomplete');
+// const hint1Content = document.querySelector('#hint-1');
+const hint2Content = document.querySelector('#hint-2');
+const hint3Content = document.querySelector('#hint-3');
+const hint1Li = document.querySelector('#has-hair');
+const hint2Li = document.querySelector('#has-short-legs');
+const hint3Li = document.querySelector('#has-short-tail');
 
 // let test = {
 // 	Banana: 'https://placekitten.com/200/300',
@@ -460,6 +469,48 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 });
 
+M.Modal.init(hintModal1);
+M.Modal.init(hintModal2);
+M.Modal.init(hintModal3);
+hintBtn1.addEventListener('click', function () {
+	const instance = M.Modal.getInstance(hintModal1);
+	let hasHair;
+	let hasShortLegs;
+	let hasShortTail;
+	if (catOfTheDay.hairless === 0) {
+		hasHair = 'No';
+	} else {
+		hasHair = 'Yes';
+	}
+	if (catOfTheDay.shortLegs === 0) {
+		hasShortLegs = 'No';
+	} else {
+		hasShortLegs = 'Yes';
+	}
+
+	if (catOfTheDay.shortTail === 0) {
+		hasShortTail = 'No';
+	} else {
+		hasShortTail = 'Yes';
+	}
+
+	hint1Li.textContent = `Hairless: ${hasHair}`;
+	hint3Li.textContent = `Short tail: ${hasShortTail}`;
+	hint2Li.textContent = `Short legs: ${hasShortLegs}`;
+	// hint1Content.textContent = `${}`
+	instance.open();
+});
+hintBtn2.addEventListener('click', function () {
+	const instance = M.Modal.getInstance(hintModal2);
+	hint2Content.textContent = `Originated from: ${catOfTheDay.origin}`;
+	instance.open();
+});
+hintBtn3.addEventListener('click', function () {
+	const instance = M.Modal.getInstance(hintModal3);
+	hint3Content.textContent = `The breed contains the letters "${catOfTheDay.id}"`;
+	instance.open();
+});
+
 // console.log(sequence1[66]);
 // const sequence2 = [3, 0, 27, 6, 61, 48, 43, 14, 47, 42, 11, 24, 46, 28, 26, 23, 15, 51, 2, 33, 30, 52, 17, 66, 53, 12, 16, 21, 25, 10, 13, 36, 54, 58, 8, 60, 64, 4, 44, 57, 1, 41, 49, 5, 50, 59, 18, 39, 32, 37, 65, 9, 7, 29, 38, 45, 56, 19, 20, 63, 55, 22, 62, 31, 35, 34, 40]
 //const sequence3 = [52, 53, 60, 15, 64, 11, 1, 14, 32, 43, 21, 61, 47, 50, 4, 40, 20, 54, 29, 66, 39, 36, 0, 16, 37, 3, 10, 13, 51, 24, 63, 62, 9, 18, 30, 56, 19, 5, 26, 31, 34, 57, 2, 6, 55, 27, 59, 35, 25, 33, 46, 12, 44, 28, 22, 42, 17, 8, 65, 23, 45, 49, 38, 7, 48, 58, 41]
@@ -487,7 +538,7 @@ function fetchCatsFromLocal() {
 function getTodaysCat(index) {
 	let randomNumber = sequence1[index];
 	catOfTheDay = catsObject[randomNumber];
-	// console.log(catOfTheDay);
+	console.log(catOfTheDay);
 }
 
 function fetchBreeds() {
@@ -525,6 +576,7 @@ function fetchBreeds() {
 					hairless: data[i].hairless,
 					altName: data[i].alt_names,
 					number: i,
+					origin: data[i].origin,
 				};
 
 				catsArray.push(cat);
