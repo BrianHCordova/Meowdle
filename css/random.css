@@ -14,9 +14,13 @@
     display: grid;
     place-items: center;
     isolation: isolate;
-    overflow: hidden;
+    /* overflow: hidden; */
+    justify-content: end;
   }
   
+  #random-img {
+    max-height: 50vh;
+  }
 
   .blob {
     position: absolute;
@@ -55,3 +59,39 @@
     }
   }
   
+  nav {
+	background-color: transparent !important;
+	box-shadow: none !important;
+	position: absolute;
+}
+
+body {
+	background-color: whitesmoke; /* Light background color */
+	color: #333; /* Dark text color */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+	background-color: #333; /* Dark background color */
+	color: #fff; /* Light text color */
+}
+
+body.dark-mode .card-content {
+	color: black; /* White text color for h1 in dark mode */
+}
+
+/* Dark mode styles for modal content */
+/* .dark-mode .modal-content { */
+	/* color: #fff; White text color in dark mode */
+	/* background-color: #444; Dark background color for modal content */
+/* } */
+/* Dark mode styles for modal footer */
+.dark-mode .modal-footer {
+	background-color: #444; /* Black background color for modal footer */
+	color: #fff; /* White text color in modal footer */
+}
+
+.dark-mode .attribute-container,
+.dark-mode .card-container {
+	background-color: #4a4a4a;
+}
