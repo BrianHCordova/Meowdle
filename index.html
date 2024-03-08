@@ -1,9 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body></body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meowdle</title>
+<!-- Materialize CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#" id="dark-light-mode">&#127769;</a></li> <!-- Dark/light mode button -->
+            <li><a href="#" id="how-to-play-button">&#x2753;</a></li> <!-- How-to-play button -->
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </div>
+</nav>
+<!-- Modal Structure -->
+<div id="how-to-play-modal" class="modal">
+    <div class="modal-content">
+        <h4>How to Play</h4>
+        <p><strong>Guess One:</strong> Guess any cat breed you can think of "use the drop down list to help guide you". We can guess russian blue.</p>
+        <p><strong>Guess Two:</strong> We know that the cat's breed does not have a short tail and is not hairless. </p>
+        <p><strong>Guess Three:</strong> Using context clues we can deduce what the cat breed is with more guesses!</p>
+        
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<!-- Optional: Container and content -->
+<div class="container">
+    <h1 class="center-align">Meowdle &#128008;</h1> <!-- Centered Meowdle -->
+<div class="content">
+    <a id="classic-mode" class="waves-effect waves-light btn-large" href="game.html">Classic Mode</a>
+    <!-- empty placeholder -->
+    <span class="spacer">emptys</span>
+    <a id="cat-fact-btn" class="waves-effect waves-light btn-large" href="random.html">Generate Fact</a>
+</div>
+<div class="blob"></div>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./assets/js/script.js"></script>
+<script>
+   // Function to toggle between light and dark modes
+   function toggleDarkLightMode() {
+       const body = document.body;
+       const isDarkMode = body.classList.toggle('dark-mode');
+
+
+       // Save the user's preferred mode in local storage
+       localStorage.setItem('darkMode', isDarkMode ? 'dark' : 'light');
+
+
+       // Update the button icon based on the current mode
+       const darkLightModeButton = document.getElementById('dark-light-mode');
+       darkLightModeButton.innerHTML = isDarkMode ? '&#127770;' : '&#127769;';
+   }
+
+
+   // Event listener for the dark/light mode button
+   document.addEventListener('DOMContentLoaded', function() {
+       const darkLightModeButton = document.getElementById('dark-light-mode');
+       darkLightModeButton.addEventListener('click', toggleDarkLightMode);
+
+
+       // Check if the user has a preferred mode saved in local storage
+       const userPreferredMode = localStorage.getItem('darkMode');
+       if (userPreferredMode === 'dark') {
+           toggleDarkLightMode(); // If dark mode is preferred, toggle it on
+       }
+
+
+       // Initialize modal for how-to-play button
+       const howToPlayButton = document.getElementById('how-to-play-button');
+       const howToPlayModal = document.getElementById('how-to-play-modal');
+       M.Modal.init(howToPlayModal);
+       howToPlayButton.addEventListener('click', function() {
+           const instance = M.Modal.getInstance(howToPlayModal);
+           instance.open();
+       });
+   });
+</script>
+</body>
 </html>

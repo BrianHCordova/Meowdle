@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #00003f;
+    height: 100vh;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  
+  .content span {
+    font-size: 1.3em;
+    letter-spacing: 1.3px;
+    line-height: 1.2;
+  }
+  
+  .blob {
+    position: absolute;
+    opacity: 0.5;
+    width: 400px;
+    aspect-ratio: 1/1;
+    animation: animate 10s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite
+      alternate forwards;
+    filter: blur(40px);
+    z-index: -1;
+    background: linear-gradient(
+      47deg,
+      rgba(255, 88, 139, 1) 21%,
+      rgb(0 164 173) 67%,
+      rgba(118, 74, 166, 1) 81%
+    );
+  
+    /*  Optional  */
+    /*   box-shadow: inset 50px 50px 17px 0px #ff588b,
+      inset 100px 100px 17px 0px #66319f; */
+  }
+  
+  @keyframes animate {
+    0% {
+      translate: 40% -25%;
+      border-radius: 60% 40% 30% 70% / 100% 85% 92% 74%;
+    }
+    50% {
+      translate: 0% 13%;
+      border-radius: 20% 71% 47% 70% / 81% 15% 22% 54%;
+      rotate: 41deg;
+      scale: 1.15;
+    }
+    100% {
+      translate: -45% 39%;
+      border-radius: 100% 75% 92% 74% / 60% 80% 30% 70%;
+      rotate: -60deg;
+      scale: 1.05;
+    }
+  }
+  
+
+/* place-holder for spacing of buttons */
+.spacer {
+    visibility: hidden;
+}
+
+/* Merged styles */
+.center-align {
+    text-align: center;
+}
+
+.brand-logo {
+    font-size: 2rem; /* Example font size */
+    color: #333; /* Example color */
+    /* Add more styling as needed */
+}
+
+nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    position: absolute;
+}
+
+h1.center-align {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a suitable font */
+    font-size: 4rem; /* Increase font size for emphasis */
+    color: #333; /* Dark color for better contrast */
+    margin-top: 0px; /* Add space above the heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    letter-spacing: 2px; /* Increase letter spacing for better readability */
+}
+
+/* Default light mode styles */
+body {
+    background-color: #fff; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+body.dark-mode h1 {
+    color: #fff; /* White text color for h1 in dark mode */
+}
+
+/* Dark mode styles for modal content */
+.dark-mode .modal-content {
+    color: #fff; /* White text color in dark mode */
+    background-color: #444; /* Dark background color for modal content */
+}
+/* Dark mode styles for modal footer */
+.dark-mode .modal-footer {
+    background-color: #444; /* Black background color for modal footer */
+    color: #fff; /* White text color in modal footer */
+}
