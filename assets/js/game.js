@@ -1,6 +1,8 @@
 const gameBody = document.querySelector('#game-body');
 const userInput = document.querySelector('#input');
 const submitBtn = document.querySelector('#input-submit-btn');
+const guessContainerEl = document.querySelector('.guess-container');
+
 let catOfTheDay;
 
 const sequence1 = [
@@ -328,7 +330,7 @@ function fetchCatsFromLocal() {
 function getTodaysCat(index) {
 	let randomNumber = sequence1[index];
 	catOfTheDay = catsObject[randomNumber];
-	console.log(catOfTheDay);
+	// console.log(catOfTheDay);
 }
 
 function fetchBreeds() {
@@ -508,6 +510,141 @@ function getWrongGuess(index) {
 	const wrongCat = catsObject[index];
 	// console.log(wrongCat);
 	// createCards(wrongCat);
+}
+
+function getWrongGuess(index) {
+	const wrongCat = catsObject[index];
+	console.log(wrongCat);
+	createCards(wrongCat, index);
+}
+
+function createCards(cat, index) {
+	// console.log(`index is: ${index}`);
+	// event.preventDefault();
+
+	// // Creates div with class of row
+	// const divEl = document.createElement('div');
+	// divEl.setAttribute('class', 'row displayed-cards');
+
+	// const breedEl = document.createElement('div');
+	// breedEl.setAttribute('class', 'card s2');
+	// const breedImg = document.createElement('img');
+	// breedImg.setAttribute('src', `${catImagesList[index].image}`);
+	// breedImg.setAttribute('alt', catImagesList[index].name);
+	// breedImg.setAttribute('class', 'responsive-img');
+	// breedEl.appendChild(breedImg);
+
+	// const tailEl = document.createElement('div');
+	// tailEl.setAttribute('class', 'card s2');
+	// let tail;
+	// if (cat.shortTail === 0) {
+	// 	tail = 'No';
+	// } else {
+	// 	tail = 'Yes';
+	// }
+	// tailEl.textContent = tail;
+
+	// const legEl = document.createElement('div');
+	// legEl.setAttribute('class', 'card s2');
+	// let legs;
+	// if (cat.shortLegs === 0) {
+	// 	legs = 'No';
+	// } else {
+	// 	legs = 'Yes';
+	// }
+	// legEl.textContent = legs;
+
+	// const weightEl = document.createElement('div');
+	// weightEl.setAttribute('class', 'card s2');
+	// weightEl.textContent = `${cat.weight} lbs`;
+
+	// const lifespanEl = document.createElement('div');
+	// lifespanEl.setAttribute('class', 'card s2');
+	// lifespanEl.textContent = `${cat.lifespan} years`;
+
+	// const hairlessEl = document.createElement('div');
+	// hairlessEl.setAttribute('class', 'card s2');
+	// let hairless;
+	// if (cat.hairless === 0) {
+	// 	hairless = 'No';
+	// } else {
+	// 	hairless = 'Yes';
+	// }
+	// hairlessEl.textContent = hairless;
+
+	// divEl.appendChild(breedEl);
+	// divEl.appendChild(tailEl);
+	// divEl.appendChild(legEl);
+	// divEl.appendChild(weightEl);
+	// divEl.appendChild(lifespanEl);
+	// divEl.appendChild(hairlessEl);
+
+	// cardContainerEl.appendChild(divEl);
+
+	const divEl = document.createElement('div');
+	divEl.setAttribute('class', 'card-container');
+
+	const breedEl = document.createElement('div');
+	breedEl.setAttribute('class', 'custom-card');
+	const breedImg = document.createElement('img');
+	breedImg.setAttribute('src', `${catImagesList[index].image}`);
+	breedImg.setAttribute('alt', catImagesList[index].name);
+	// breedImg.setAttribute('class', 'responsive-img');
+	breedEl.appendChild(breedImg);
+
+	const tailEl = document.createElement('div');
+	tailEl.setAttribute('class', 'custom-card');
+	let tail;
+	if (cat.shortTail === 0) {
+		tail = 'No';
+	} else {
+		tail = 'Yes';
+	}
+	tailEl.textContent = tail;
+
+	const legEl = document.createElement('div');
+	legEl.setAttribute('class', 'custom-card');
+	let legs;
+	if (cat.shortLegs === 0) {
+		legs = 'No';
+	} else {
+		legs = 'Yes';
+	}
+	legEl.textContent = legs;
+
+	const weightEl = document.createElement('div');
+	weightEl.setAttribute('class', 'custom-card');
+	weightEl.textContent = `${cat.weight} lbs`;
+
+	const lifespanEl = document.createElement('div');
+	lifespanEl.setAttribute('class', 'custom-card');
+	lifespanEl.textContent = `${cat.lifespan} years`;
+
+	const hairlessEl = document.createElement('div');
+	hairlessEl.setAttribute('class', 'custom-card');
+	let hairless;
+	if (cat.hairless === 0) {
+		hairless = 'No';
+	} else {
+		hairless = 'Yes';
+	}
+	hairlessEl.textContent = hairless;
+
+	divEl.appendChild(breedEl);
+	divEl.appendChild(tailEl);
+	divEl.appendChild(legEl);
+	divEl.appendChild(weightEl);
+	divEl.appendChild(lifespanEl);
+	divEl.appendChild(hairlessEl);
+
+	guessContainerEl.appendChild(divEl);
+
+	// const test = document.createElement('div');
+	// test.textContent = 'please work?';
+
+	// cardContainerEl.append(test);
+
+	// contentEl.appendChild(test);
 }
 
 function updateGuessToLocal(guess) {

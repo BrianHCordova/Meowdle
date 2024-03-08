@@ -8,7 +8,8 @@ nav {
 }
 body {
 	background: whitesmoke;
-	height: 98dvh;
+	/* height: 98dvh; */
+	/* padding-bottom: 50px; */
 }
 
 .container {
@@ -75,13 +76,53 @@ body {
 	padding-bottom: 20px;
 }
 
-.attribute-container {
+/* .attribute-container {
 	color: black;
 	font-size: large;
 	text-align: center;
 	border: solid black 2px;
 	align-items: end;
 	visibility: hidden;
+} */
+
+.attribute-container,
+.card-container {
+	display: flex;
+	border: 2px solid black;
+	font-size: 26px;
+	width: 1200px;
+	justify-content: space-around;
+	padding: 10px 0px;
+	margin: 20px 0px;
+}
+
+.attribute {
+	display: flex;
+	width: 100px;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+
+.card-container img {
+	width: 96px;
+	height: 96px;
+	object-fit: cover;
+	/* height: 100px; */
+	/* width: 100px; */
+	/* overflow: hidden; */
+}
+
+.custom-card {
+	display: flex;
+	width: 100px;
+	height: 100px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	/* background-color: black; */
+	border: 2px solid black;
 }
 
 .displayed-cards {
@@ -136,33 +177,33 @@ body {
 /* lets see */
 /* Default light mode styles */
 body {
-    background-color: #fff; /* Light background color */
-    color: #333; /* Dark text color */
+	background-color: #fff; /* Light background color */
+	color: #333; /* Dark text color */
 }
 
 /* Dark mode styles */
 body.dark-mode {
-    background-color: #333; /* Dark background color */
-    color: #fff; /* Light text color */
+	background-color: #333; /* Dark background color */
+	color: #fff; /* Light text color */
 }
 
 body.dark-mode h1 {
-    color: #fff; /* White text color for h1 in dark mode */
+	color: #fff; /* White text color for h1 in dark mode */
 }
 
 /* Dark mode styles for modal content */
 .dark-mode .modal-content {
-    color: #fff; /* White text color in dark mode */
-    background-color: #444; /* Dark background color for modal content */
+	color: #fff; /* White text color in dark mode */
+	background-color: #444; /* Dark background color for modal content */
 }
 /* Dark mode styles for modal footer */
 .dark-mode .modal-footer {
-    background-color: #444; /* Black background color for modal footer */
-    color: #fff; /* White text color in modal footer */
+	background-color: #444; /* Black background color for modal footer */
+	color: #fff; /* White text color in modal footer */
 }
 
 nav {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    position: absolute;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	position: absolute;
 }
