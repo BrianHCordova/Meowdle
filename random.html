@@ -8,13 +8,25 @@
     <title>Random Facts</title>
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" id="dark-light-mode">&#127769;</a></li>
+                <!-- Dark/light mode button -->
+                <!-- <li><a href="#" id="how-to-play-button">&#x2753;</a></li> -->
+                <!-- How-to-play button -->
+                <!-- Add more navigation items as needed -->
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="content">
             <div class="row">
                 <div class="col s12 m7 center-align">
                   <div class="card">
                     <div class="card-image">
-                      <img id="random-img" src="http://placekitten.com/g/80/80">
+                      <img id="random-img" src="http://placekitten.com/200/300">
                     </div>
                     <div class="card-content">
                         <span class="card-title"><h4>Cat Fact</h4></span>
@@ -35,5 +47,41 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+    // Function to toggle between light and dark modes
+    function toggleDarkLightMode() {
+        const body = document.body;
+        const isDarkMode = body.classList.toggle('dark-mode');
+
+        // Save the user's preferred mode in local storage
+        localStorage.setItem('darkMode', isDarkMode ? 'dark' : 'light');
+
+        // Update the button icon based on the current mode
+        const darkLightModeButton = document.getElementById('dark-light-mode');
+        darkLightModeButton.innerHTML = isDarkMode ? '&#127770;' : '&#127769;';
+    }
+
+    // Event listener for the dark/light mode button
+    document.addEventListener('DOMContentLoaded', function () {
+        const darkLightModeButton = document.getElementById('dark-light-mode');
+        darkLightModeButton.addEventListener('click', toggleDarkLightMode);
+
+        // Check if the user has a preferred mode saved in local storage
+        const userPreferredMode = localStorage.getItem('darkMode');
+        if (userPreferredMode === 'dark') {
+            toggleDarkLightMode(); // If dark mode is preferred, toggle it on
+        }
+
+        // Initialize modal for how-to-play button
+        const howToPlayButton = document.getElementById('how-to-play-button');
+        const howToPlayModal = document.getElementById('how-to-play-modal');
+        M.Modal.init(howToPlayModal);
+        howToPlayButton.addEventListener('click', function () {
+            const instance = M.Modal.getInstance(howToPlayModal);
+            instance.open();
+        });
+    });
+</script>
 </body>
 </html>
