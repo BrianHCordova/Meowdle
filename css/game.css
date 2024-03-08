@@ -176,7 +176,12 @@ body {
 	position: relative;
 	place-items: center;
 	isolation: isolate;
-	overflow: hidden;
+	/* overflow: hidden; */
+}
+
+.dark-mode #website-title {
+	/* text-decoration: none; */
+	color: white;
 }
 
 @keyframes animate {
@@ -232,6 +237,10 @@ body.dark-mode h1 {
 
 .dark-mode #input {
 	color: white;
+}
+
+#website-title {
+	color: black;
 }
 
 nav {
