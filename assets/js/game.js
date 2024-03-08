@@ -497,9 +497,11 @@ function checkGuessesInLocal() {
 
 	if (anyGuesses === null) {
 		anyGuesses = [];
+	} else {
+		guessContainerEl.innerHTML = '';
 	}
 
-	guessContainerEl.innerHTML = '';
+	// guessContainerEl.innerHTML = '';
 
 	for (guess of anyGuesses) {
 		// const guessCard = createCards(guess);
