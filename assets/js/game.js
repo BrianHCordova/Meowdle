@@ -15,6 +15,8 @@ const hint3Content = document.querySelector('#hint-3');
 const hint1Li = document.querySelector('#has-hair');
 const hint2Li = document.querySelector('#has-short-legs');
 const hint3Li = document.querySelector('#has-short-tail');
+const inputEl = document.querySelector('.input-width');
+const hintButtons = document.querySelector('.hint-btns');
 
 // let test = {
 // 	Banana: 'https://placekitten.com/200/300',
@@ -719,6 +721,14 @@ function checkGuessesInLocal() {
 		// const guessCard = createCards(guess);
 		// console.log(guess);
 		createCards(guess);
+		// console.log(anyGuesses[anyGuesses.length - 1]);
+		if (anyGuesses[anyGuesses.length - 1].name === catOfTheDay.name) {
+			inputEl.setAttribute('style', 'display: none');
+			submitBtn.setAttribute('style', 'display: none');
+			hintBtn1.setAttribute('style', 'display: none');
+			hintBtn2.setAttribute('style', 'display: none');
+			hintBtn3.setAttribute('style', 'display: none');
+		}
 		// guessContainerEl.appendChild(guessCard);
 	}
 }
@@ -732,6 +742,11 @@ function compareGuess(guess, index) {
 	if (catOfTheDay.name.toLowerCase() === guess) {
 		// console.log('match');
 		createCards(catOfTheDay);
+		inputEl.setAttribute('style', 'display: none');
+		submitBtn.setAttribute('style', 'display: none');
+		hintBtn1.setAttribute('style', 'display: none');
+		hintBtn2.setAttribute('style', 'display: none');
+		hintBtn3.setAttribute('style', 'display: none');
 	} else {
 		// console.log('no match');
 
