@@ -250,3 +250,42 @@ nav {
 	z-index: 9999;
 }
 
+@media screen and (max-width: 600px) {
+	.attribute-container,
+.card-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: space-around; /* Distribute items evenly */
+  width: 100%; /* Occupy full width */
+  margin: 20px 0px;
+}
+
+.attribute {
+  flex: 1; /* Each box occupies equal space */
+  max-width: 150px; /* Limit maximum width of each box */
+  text-align: center;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+  .attribute,
+  .card {
+    max-width: 100px; /* Reduce maximum width for smaller screens */
+  }
+}
+@media screen and (max-width: 993px) {
+	#nav-mobile {
+	  display: flex !important; /* Override Materialize CSS to always display flex */
+	}
+  
+	.right {
+	  display: flex !important; /* Ensure the right-aligned items stay visible */
+	  flex-direction: row !important; /* Ensure items are aligned horizontally */
+	}
+  
+	#dark-light-mode,
+	#how-to-play-button {
+	  display: inline-block !important; /* Ensure the buttons are displayed */
+	  margin-left: 10px; /* Adjust spacing between buttons if needed */
+	}
+}
