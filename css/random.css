@@ -14,13 +14,21 @@
     display: grid;
     place-items: center;
     isolation: isolate;
-    /* overflow: hidden; */
-    justify-content: end;
+    overflow: hidden;
+    justify-content: center;
   }
   
-  #random-img {
-    max-height: 50vh;
+
+  .card {
+    width: 400px; /* Set a fixed width for the card */
+    height: 100%; /* Set a fixed height for the card */
   }
+  
+  .card-image img {
+    max-width: 100%; /* Ensure the image inside the card scales appropriately */
+    max-height: 50vh; /* Ensure the image inside the card scales appropriately */
+    object-fit: cover;
+}
 
   .blob {
     position: absolute;
